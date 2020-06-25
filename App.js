@@ -43,7 +43,7 @@ const App: () => React$Node = () => {
         onPress={handleAlert}
       />
       <WebView
-        source={{ uri: "https://counter-ac2.bpost.cloud/moneytransfer/" }}
+        source={{ uri: "https://gopeshgopinath.com" }}
       />
     </View>
   )
