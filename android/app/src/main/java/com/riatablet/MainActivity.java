@@ -1,4 +1,4 @@
-package com.awesomeapp;
+package com.riatablet;
 
 import com.facebook.react.ReactActivity;
 
@@ -10,6 +10,6 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "AwesomeApp";
+    return "RiaTablet";
   }
 }

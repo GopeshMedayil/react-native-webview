@@ -44,8 +44,8 @@ def flipper_post_install(installer)
   end
 end
 
-target 'AwesomeApp' do
-  # Pods for AwesomeApp
+target 'RiaTablet' do
+  # Pods for RiaTablet
   pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"
   pod 'FBReactNativeSpec', :path => "../node_modules/react-native/Libraries/FBReactNativeSpec"
   pod 'RCTRequired', :path => "../node_modules/react-native/Libraries/RCTRequired"
@@ -77,7 +77,13 @@ target 'AwesomeApp' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
-  target 'AwesomeAppTests' do
+  pod 'react-native-webview', :path => '../node_modules/react-native-webview'
+
+  pod 'RNExitApp', :path => '../node_modules/react-native-exit-app'
+
+  pod 'react-native-cookies', :path => '../node_modules/@react-native-community/cookies'
+
+  target 'RiaTabletTests' do
     inherit! :complete
     # Pods for testing
   end
@@ -94,10 +100,10 @@ target 'AwesomeApp' do
   end
 end
 
-target 'AwesomeApp-tvOS' do
-  # Pods for AwesomeApp-tvOS
+target 'RiaTablet-tvOS' do
+  # Pods for RiaTablet-tvOS
 
-  target 'AwesomeApp-tvOSTests' do
+  target 'RiaTablet-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
   end
