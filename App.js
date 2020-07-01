@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /**
  * Sample React Native App
  * https://github.com/facebook/react-native
@@ -6,7 +7,7 @@
  * @flow strict-local
  */
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import RNExitApp from 'react-native-exit-app';
 
 import {
@@ -15,38 +16,44 @@ import {
   Button,
   Alert,
   PermissionsAndroid,
+  NativeModules,
 } from 'react-native';
 import CookieManager from '@react-native-community/cookies';
 
 import { WebView } from 'react-native-webview';
 
 const App: () => React$Node = () => {
+  const [messages, setMessages] = useState('');
   useEffect(() => {
     console.log('Inside useEffect');
+    const languages = getTranslations();
+    var locale = (NativeModules.I18nManager.localeIdentifier) ? NativeModules.I18nManager.localeIdentifier : 'en_US';
+    console.log('language', NativeModules.I18nManager);
+    console.log('languages', languages);
+    console.log('correct lan', languages[locale.substring(0, 2)]);
+    setMessages(languages[locale.substring(0, 2)]);
     requestCameraPermission();
   }, []);
   return (
     <View style={styles.container}>
-      <Button title="Exit" onPress={handleAlert} />
-      <WebView
-        source={{ uri: 'https://gopeshgopinath.com' }}
-      />
+      <View style={{ alignSelf: 'flex-end', paddingRight: 1 }}><Button color="#EF2637" title="NEW LOGIN" onPress={() => handleAlert(messages)} /></View>
+      <WebView source={{ uri: 'https://counter-ac2.bpost.cloud/moneytransfer/home' }} />
     </View>
   );
 };
 
-const handleAlert = () => {
+const handleAlert = (obj) => {
   Alert.alert(
-    'Exit App',
-    'Exiting the application?',
+    '',
+    obj.EXIT_TEXT,
     [
       {
-        text: 'Cancel',
+        text: obj.NO,
         onPress: () => console.log('Cancel Pressed'),
         style: 'cancel',
       },
       {
-        text: 'OK',
+        text: obj.OK,
         onPress: () =>
           CookieManager.clearAll().then((success) => {
             console.log('CookieManager.clearAll =>', success);
@@ -83,14 +90,42 @@ const requestCameraPermission = async () => {
   }
 };
 
+const getTranslations = () => {
+  return {
+    'en': {
+      'EXIT_HEADER': 'EXIT the Application',
+      'EXIT_TEXT': 'Are you sure you want to exit and log in again?',
+      'OK': 'Exit',
+      'NO': 'Cancel',
+    },
+    'fr': {
+      'EXIT_HEADER': 'EXIT the Application',
+      'EXIT_TEXT': 'Etes-vous sûr de vouloir quitter et vous reconnecter?',
+      'OK': 'Quitter',
+      'NO': 'Annuler',
+    },
+    'nl': {
+      'EXIT_HEADER': 'EXIT the Application',
+      'EXIT_TEXT': 'Bent u zeker dat u wil afsluiten en opnieuw inloggen?',
+      'OK': 'Afsluiten',
+      'NO': 'Annuleren',
+    },
+    'de': {
+      'EXIT_HEADER': 'EXIT the Application',
+      'EXIT_TEXT': 'Sind SIe sicher sich abzumelden?',
+      'OK': 'Ja',
+      'NO': 'Nein',
+    },
+  };
+};
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    paddingTop: 10,
-    backgroundColor: '#ecf0f1',
-    padding: 8,
-  },
+    backgroundColor: '#4A4A4F',
+    paddingTop: 0,
+    padding: 0,
+  }
 });
 
 export default App;
