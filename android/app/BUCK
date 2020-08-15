@@ -35,12 +35,12 @@ android_library(
 
 android_build_config(
     name = "build_config",
-    package = "com.riatablet",
+    package = "com.riatabletprod",
 )
 
 android_resource(
     name = "res",
-    package = "com.riatablet",
+    package = "com.riatabletprod",
     res = "src/main/res",
 )
 

@@ -1,4 +1,4 @@
-package com.riatablet;
+package com.riatabletprod;
 
 import com.facebook.react.ReactActivity;
 

@@ -37,7 +37,7 @@ const App: () => React$Node = () => {
   return (
     <View style={styles.container}>
       <View style={{ alignSelf: 'flex-end', paddingRight: 1 }}><Button color="#EF2637" title="NEW LOGIN" onPress={() => handleAlert(messages)} /></View>
-      <WebView source={{ uri: 'https://counter-ac2.bpost.cloud/moneytransfer/home' }} />
+      <WebView source={{ uri: 'https://google.com/' }} />
     </View>
   );
 };
